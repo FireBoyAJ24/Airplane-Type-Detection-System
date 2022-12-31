@@ -45,6 +45,7 @@ def photoCollection(name):
 
 def photoLoop(name, planeFigs):
     i = 1
+    print(len(planeFigs))
     for planeFig in planeFigs:
         try:
             download_file(planeFig.attrs['src'], name, i)
@@ -53,8 +54,16 @@ def photoLoop(name, planeFigs):
 
         i += 1
 
-plane_raw = ["Boeing 787", "Airbus A380", "Airbus A300", "Airbus 350", "Airbus Beluga", "Airbus BelugaXL", "Boeing 777"]
-"""["A-37A Dragonfly", "ADM-20 Quail", "A-10A Thunderbolt II",
+plane_raw = ["Boeing 787", 
+"Airbus A380", 
+"Airbus A300", 
+"Airbus 350", 
+"Airbus Beluga", 
+"Airbus BelugaXL", 
+"Boeing 777", 
+"A-37A Dragonfly", 
+"ADM-20 Quail", 
+"A-10A Thunderbolt II",
 "A-37A Dragonfly"
 "AC-130A Spectre", 
 "WB-66D Destroyer", 
@@ -96,7 +105,6 @@ plane_raw = ["Boeing 787", "Airbus A380", "Airbus A300", "Airbus 350", "Airbus B
 "UH-1P Iroquois",
 "MH-53M Pave Low" ,
 "SR-71A Blackbird"]
-"""
 
 plane_names = whitespaceToSpace(plane_raw)
 print(plane_names)
