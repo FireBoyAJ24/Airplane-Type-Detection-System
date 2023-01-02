@@ -5,7 +5,7 @@ import os
 
 
 def download_file(url, name, num):
-    folder_path = os.path.join('C:\\Users\\Aksha\\Documents\\GitHub\\ML\\Aircraft Pictures',name)
+    folder_path = os.path.join('C:\\Users\\Aksha\\Documents\\GitHub\\ML\\Aircraft Pictures\\',name)
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     local_filename = folder_path + '\\' + str(num) + r'.jpg'
@@ -34,10 +34,10 @@ def whitespaceToSpace(raw):
         i += 1
     return nameSearch
 
-def photoCollection(name):
-    search = "https://www.google.com/search?q=" + name + "&tbm=isch"
+def photoCollection(name, i):
+    search = "https://www.bing.com/images/search?q="+ name +"&form=HDRSC3&first="+ str(i) + "&tsc=ImageHoverTitle"  
 
-    html_text = requests.get(search).text
+    html_text = requests.get(search, stream=True).text
 
     soup = BeautifulSoup(html_text, 'lxml')
 
@@ -65,7 +65,6 @@ plane_raw = ["Boeing 787",
 "ADM-20 Quail", 
 "A-10A Thunderbolt II",
 "A-37A Dragonfly"
-"AC-130A Spectre", 
 "WB-66D Destroyer", 
 "B-1B Lancer", 
 "B-29B Superfortress", 
@@ -100,10 +99,6 @@ plane_raw = ["Boeing 787",
 "F-86H Sabre",
 "P-51H Mustang",
 "F-100D Super Sabre",
-"HH-43F Huskie",
-"CH-21B Workhorse",
-"UH-1P Iroquois",
-"MH-53M Pave Low" ,
 "SR-71A Blackbird"]
 
 plane_names = whitespaceToSpace(plane_raw)
@@ -112,8 +107,9 @@ print(plane_names)
 
 
 for i in range(0, len(plane_names)):
-    planeFigs = photoCollection(plane_names[i])
-    photoLoop(plane_raw[i], planeFigs)
+    for j in range(0, 100, 20):
+        planeFigs = photoCollection(plane_names[i], j)
+        photoLoop(plane_raw[i], planeFigs)
 
 
 
