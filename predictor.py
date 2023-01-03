@@ -54,8 +54,10 @@ class TinyVGG(nn.Module):
         # return self.classifier(self.conv_block_2(self.conv_block_1(x))) # <- leverage the benefits of operator fusion
 
 def preview_Image(image):
-
-    st.image(image, caption='Your Image')
+    st.image(image, width=540, caption='Your Image')
+    st.header("")
+    
+    
 
 
 def Input_Image():
@@ -94,14 +96,16 @@ def load_model():
     model = TinyVGG(input_shape=3,
                     hidden_units=10,
                     output_shape=50)
-    model.load_state_dict(torch.load('data\Models\models_0.pth'))
+    model.load_state_dict(torch.load('data/Models/models_0.pth'))
 
 
 
     return model
 
 
-
+def predict_image(predict):
+    path = "data/Aircraft Pictures/" + predict + "/1.jpg"
+    st.image(path, width=540 , caption="Prediction")
 
 
 def show_predictor_page():
@@ -156,8 +160,11 @@ def show_predictor_page():
   'VC-140B JetStar',
   'WB-66D Destroyer']
     
-    st.title("Airplane Detection System")
-    st.write("""### It can predict different aircrafts from images.""")
+
+    st.title("Airplane Type Image Detection")
+    st.write("""### It can determine whic aircraft is present within the image inputed by the user.""")
+
+    
 
     X = Input_Image()
 
@@ -170,13 +177,19 @@ def show_predictor_page():
 
             
             image_pred_probs = torch.softmax(image_pred_logits, dim=1)
-            print(f"Prediction labels: {image_pred_probs}")
+            # print(f"Prediction labels: {image_pred_probs}")
             prediction_index = torch.argmax(image_pred_probs)
-            print(f"Prediction index: {prediction_index}")
+            # print(f"Prediction index: {prediction_index}")
             airplane_prediction = plane_raw[prediction_index]
-            print(f"Prediction: {airplane_prediction}")
+            # print(f"Prediction: {airplane_prediction}")
+            
+            st.subheader("")
+            
+            st.subheader(f"The airplane in the picture is :green[{airplane_prediction}]")
+            
+            st.subheader("")
 
-            st.subheader(f"The airplane in the picture: {airplane_prediction}")
+            predict_image(airplane_prediction)
 
 
             
