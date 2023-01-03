@@ -162,7 +162,7 @@ def show_predictor_page():
     
 
     st.title("Airplane Type Image Detection")
-    st.write("""### It can predict different aircrafts from the user inputed image.""")
+    st.write("""### It can determine whic aircraft is present within the image inputed by the user.""")
 
     
 
