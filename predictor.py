@@ -191,7 +191,7 @@ def show_predictor_page():
 
             predict_image(airplane_prediction)
         
-        st.sidebar.write("check out this [Github Repo](https://github.com/FireBoyAJ24/Airplane-Type-Detection-System)")
+        st.sidebar.write("Check out the [Github Repo!](https://github.com/FireBoyAJ24/Airplane-Type-Detection-System)")
         
 
 
