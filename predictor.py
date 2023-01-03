@@ -54,8 +54,10 @@ class TinyVGG(nn.Module):
         # return self.classifier(self.conv_block_2(self.conv_block_1(x))) # <- leverage the benefits of operator fusion
 
 def preview_Image(image):
-
-    st.image(image, caption='Your Image')
+    st.image(image, width=540, caption='Your Image')
+    st.header("")
+    
+    
 
 
 def Input_Image():
@@ -101,7 +103,9 @@ def load_model():
     return model
 
 
-
+def predict_image(predict):
+    path = "data\\Aircraft Pictures\\" + predict + "\\1.jpg"
+    st.image(path, width=540 , caption="Prediction")
 
 
 def show_predictor_page():
@@ -156,8 +160,11 @@ def show_predictor_page():
   'VC-140B JetStar',
   'WB-66D Destroyer']
     
-    st.title("Airplane Detection System")
-    st.write("""### It can predict different aircrafts from images.""")
+
+    st.title("Airplane Type Image Detection")
+    st.write("""### It can determine whic aircraft is present within the image inputed by the user.""")
+
+    
 
     X = Input_Image()
 
@@ -175,8 +182,14 @@ def show_predictor_page():
             print(f"Prediction index: {prediction_index}")
             airplane_prediction = plane_raw[prediction_index]
             print(f"Prediction: {airplane_prediction}")
+            
+            st.subheader("")
+            
+            st.subheader(f"The airplane in the picture is :green[{airplane_prediction}]")
+            
+            st.subheader("")
 
-            st.subheader(f"The airplane in the picture: {airplane_prediction}")
+            predict_image(airplane_prediction)
 
 
             
