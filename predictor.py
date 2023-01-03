@@ -162,7 +162,7 @@ def show_predictor_page():
     
 
     st.title("Airplane Type Image Detection")
-    st.write("""### It can determine whic aircraft is present within the image inputed by the user.""")
+    st.write("""### It can determine which aircraft is present within the image inputed by the user.""")
 
     
 
@@ -190,6 +190,9 @@ def show_predictor_page():
             st.subheader("")
 
             predict_image(airplane_prediction)
+        
+
+        st.write("""<a href='https://github.com/FireBoyAJ24/Airplane-Type-Detection-System'>Github Repo</>""")
 
 
             
